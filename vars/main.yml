@@ -1,0 +1,7 @@
+index_file: index.html.j2
+redhat_service_state: started
+debian_service_state: started
+
+
+redhat_service_name: httpd
+debian_service_name: apache2

@@ -1,0 +1,27 @@
+--- 
+- name:  Installing Apache Server Package in RedHat
+  package:
+   name: httpd
+   state: present
+  when: ansible_os_family == 'RedHat'
+  
+
+- name:  Installing Apache Server Package in Debian
+  package:
+   name: apache2
+   state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Creating Index File
+  template: 
+   src: "{{ index_file }}"
+   dest: /var/www/html/index.html
+  when: ansible_os_family == 'Debian'
+  notify: restart server
+
+- name: Creating Index File
+  template: 
+   src: "{{ index_file }}"
+   dest: /var/www/html/index.html
+  when: ansible_os_family == 'RedHat'
+  notify: restart server
